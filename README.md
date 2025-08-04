@@ -5,7 +5,7 @@ A beautiful, responsive memory game built with vanilla HTML, CSS, and JavaScript
 ## 🎮 Game Features
 
 - **4x4 Grid**: 16 tiles with 8 pairs to match
-- **Random Image Selection**: Each game randomly selects 8 images from 20 available photos
+- **Random Image Selection**: Each game randomly selects 8 images from 15 available photos
 - **Modern UI**: Clean, Airbnb-style design with smooth animations
 - **Game Statistics**: Track time, moves, and pairs found
 - **Responsive Design**: Works perfectly on desktop, tablet, and mobile
@@ -18,7 +18,7 @@ The game expects images named in the format:
 - `IMG (1).jpg`
 - `IMG (2).jpg`
 - ...
-- `IMG (20).jpg`
+- `IMG (15).jpg`
 
 Images can be of different shapes and resolutions - the CSS handles proper scaling and cropping.
 
@@ -35,7 +35,7 @@ Upload all the files to your repository:
 - `style.css`
 - `script.js`
 - `README.md`
-- All your `IMG (1).jpg` to `IMG (20).jpg` files
+- All your `IMG (1).jpg` to `IMG (15).jpg` files
 
 ### Step 3: Enable GitHub Pages
 1. Go to your repository settings

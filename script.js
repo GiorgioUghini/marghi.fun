@@ -1,13 +1,11 @@
 class MemoryGame {
     constructor() {
         this.gameBoard = document.getElementById('gameBoard');
-        this.timerElement = document.getElementById('timer');
         this.movesElement = document.getElementById('moves');
         this.pairsElement = document.getElementById('pairs');
         this.newGameBtn = document.getElementById('newGameBtn');
         this.resetBtn = document.getElementById('resetBtn');
         this.victoryModal = document.getElementById('victoryModal');
-        this.finalTimeElement = document.getElementById('finalTime');
         this.finalMovesElement = document.getElementById('finalMoves');
         this.playAgainBtn = document.getElementById('playAgainBtn');
 
@@ -16,8 +14,6 @@ class MemoryGame {
         this.pairsNeeded = 8;
         
         this.gameStarted = false;
-        this.startTime = null;
-        this.timer = null;
         this.moves = 0;
         this.pairsFound = 0;
         this.flippedTiles = [];
@@ -51,8 +47,6 @@ class MemoryGame {
 
     resetGame() {
         this.gameStarted = false;
-        this.startTime = null;
-        this.clearTimer();
         this.moves = 0;
         this.pairsFound = 0;
         this.flippedTiles = [];
@@ -178,9 +172,9 @@ class MemoryGame {
             return;
         }
 
-        // Start the game timer on first click
+        // Start the game on first click
         if (!this.gameStarted) {
-            this.startGame();
+            this.gameStarted = true;
         }
 
         // Flip the tile
@@ -229,46 +223,13 @@ class MemoryGame {
         }, 1000);
     }
 
-    startGame() {
-        this.gameStarted = true;
-        this.startTime = Date.now();
-        this.startTimer();
-    }
-
-    startTimer() {
-        this.timer = setInterval(() => {
-            const elapsed = Date.now() - this.startTime;
-            const minutes = Math.floor(elapsed / 60000);
-            const seconds = Math.floor((elapsed % 60000) / 1000);
-            this.timerElement.textContent = 
-                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-        }, 1000);
-    }
-
-    clearTimer() {
-        if (this.timer) {
-            clearInterval(this.timer);
-            this.timer = null;
-        }
-        this.timerElement.textContent = '00:00';
-    }
-
     updateStats() {
         this.movesElement.textContent = this.moves;
         this.pairsElement.textContent = `${this.pairsFound}/${this.pairsNeeded}`;
     }
 
     endGame() {
-        this.clearTimer();
-        
-        // Calculate final time
-        const totalTime = Date.now() - this.startTime;
-        const minutes = Math.floor(totalTime / 60000);
-        const seconds = Math.floor((totalTime % 60000) / 1000);
-        const finalTimeString = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-        
         // Update victory modal
-        this.finalTimeElement.textContent = finalTimeString;
         this.finalMovesElement.textContent = this.moves;
         
         // Show victory modal with delay for effect
